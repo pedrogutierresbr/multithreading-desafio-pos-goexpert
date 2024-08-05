@@ -1,28 +1,19 @@
 package main
 
-type ViaCep struct {
-	Cep         string `json:"cep"`
-	Logradouro  string `json:"logradouro"`
-	Complemento string `json:"complemento"`
-	Unidade     string `json:"unidade"`
-	Bairro      string `json:"bairro"`
-	Localidade  string `json:"localidade"`
-	Uf          string `json:"uf"`
-	Ibge        string `json:"ibge"`
-	Gia         string `json:"gia"`
-	Ddd         string `json:"ddd"`
-	Siafi       string `json:"siafi"`
-}
+import (
+	"net/http"
 
-type BrasilApi struct {
-	Cep          string `json:"cep"`
-	State        string `json:"state"`
-	City         string `json:"city"`
-	Neighborhood string `json:"neighborhood"`
-	Street       string `json:"street"`
-	Service      string `json:"service"`
-}
+	"github.com/go-chi/chi"
+	"github.com/go-chi/chi/middleware"
+	"github.com/pedrogutierresbr/multithreading-desafio-pos-goexpert/internal/infra/webserver/handlers"
+)
 
 func main() {
+	r := chi.NewRouter()
+	r.Use(middleware.Logger)
+	r.Use(middleware.Recoverer)
 
+	r.Get("/cep/{cep}", handlers.SearchCepHandler)
+
+	http.ListenAndServe(":8000", r)
 }
