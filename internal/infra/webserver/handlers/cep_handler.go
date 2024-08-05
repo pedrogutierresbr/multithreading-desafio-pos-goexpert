@@ -1,6 +1,10 @@
 package handlers
 
-import "net/http"
+import (
+	"net/http"
+
+	"github.com/go-chi/chi/v5"
+)
 
 type ViaCep struct {
 	Cep         string `json:"cep"`
@@ -26,5 +30,11 @@ type BrasilApi struct {
 }
 
 func SearchCepHandler(w http.ResponseWriter, r *http.Request) {
+	cep := chi.URLParam(r, "cep")
+	if cep == "" {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
 
+	w.Write([]byte("CEP: " + cep))
 }
