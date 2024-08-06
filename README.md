@@ -76,7 +76,7 @@ $ cd cmd/server/
 
 $ go run server.go
 
-# A aplicação será aberta na porta:8080
+# A aplicação será aberta na porta:8000
 
 ```
 
