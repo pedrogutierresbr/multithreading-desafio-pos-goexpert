@@ -98,7 +98,7 @@ $ http://localhost:8000/cep/38050600 <- exemplo
 
 # Clique em Send Request*
 
-# *Lembre-se de ter intalado a extensão Rest Client no seu VS Code
+# *Lembre-se de ter instalado a extensão Rest Client no seu VS Code
 
 ```
 
